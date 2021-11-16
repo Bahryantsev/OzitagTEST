@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    background-color: #1D1E1F;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    max-width: 640px;
+    width: 100%;
+    height: 226px;
+    padding: 17px 22px 12px;
+}
+
+.container_header {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #272526;
+    margin-bottom: 14px;
+}
+
+.item {
+    padding-bottom: 18px;
+    position: relative;
+}
+
+.item:first-of-type {
+    border-bottom: 1px solid #D9D9D9;
+    margin-bottom: 14px;
+}
+
+.link {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+    color: #035B77;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+.main_input{
+    width: 100%;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.main_input::placeholder{
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #272526;
+    opacity: 0.6;
+}
+.main_input:active{
+    border:none;
+    border-right: 2px solid black;
+}
+
+
+
+.modalWindow {
+    position: fixed;
+    max-width: 640px;
+    width: 100%;
+    height: 100px;
+    opacity: 0;
+    background-color: #fff;
+    pointer-events: none;
+    top: 110px;
+}
+
+.modalWindowHeader {
+    padding: 23px 17px 20px;
+    background: #FAFAFA;
+    box-shadow: 0px 1px 0px #D9D9D9;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.arrowBack {
+    width: 15px;
+    height: 18px;
+    background-image: url(../media/Vector.svg);
+    margin-right: 12px;
+}
+
+.search {
+    width: 100%;
+    height: 46px;
+    margin: 0 auto;
+}
+
+select {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+}
+
+.content {
+    height: 419px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+    padding: 11px 0 48px 0;
+    overflow: scroll;
+}
+
+.modalFooter {
+    background: #FAFAFA;
+    box-shadow: 0px -1px 0px #D9D9D9;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    padding: 11px 20px;
+    background: #035B77;
+    border: none;
+    border-radius: 4px;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.clearBtn {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+    color: #000000;
+    opacity: 0.6;
+}
+
+.clearBtn:hover {
+    cursor: pointer;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputForm {
+    display: none;
+}
+
+.custom_checkbox {
+    margin-right: 40px;
+    width: 18px;
+    height: 18px;
+    background: #FFFFFF;
+    opacity: 0.2;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.inputForm:checked+.custom_checkbox {
+    border: none;
+    opacity: 1;
+    background-color: #035B77;
+    background-image: url(../media/VectorCheckbox.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.inputFormLabel {
+    max-width: 521px;
+    display: inline-block;
+    display: flex;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #272526;
+}
+
+.inputWrapper {
+    display: flex;
+    padding: 6px 40px 6px 20px;
+}
+
+.checked {
+    background: linear-gradient(0deg, rgba(3, 91, 119, 0.05), rgba(3, 91, 119, 0.05));
+}
+
+.hidden {
+    display: none;
+}
