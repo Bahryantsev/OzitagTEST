@@ -89,9 +89,71 @@ for (let i = 0; i < getSelect(optionArr).length; i++) {
     inputForm[i].setAttribute('type', 'checkbox'); inputForm[i].setAttribute('id', options[i].value); inputForm[i].classList.add('inputForm');
     inputFormLabel[i] = document.createElement('label'); inputFormLabel[i].innerText = options[i].title; inputFormLabel[i].setAttribute('for', options[i].value); inputFormLabel[i].classList.add('inputFormLabel')
     inputWrapper[i] = document.createElement('div'); inputWrapper[i].classList.add('inputWrapper'); inputWrapper[i].append(inputForm[i], customCheckbox[i], inputFormLabel[i]);
-    inputWrapper[i].setAttribute('data-level',options[i].level)
+   
+    if(options[i].level === 1){
+        inputFormLabel[i].style.paddingLeft = '0'
+    }else if(+options[i].level === 2){
+        inputFormLabel[i].style.paddingLeft = '15px'
+    }
+    else if(+options[i].level === 3){
+        inputFormLabel[i].style.paddingLeft = '30px'
+    }
+    else if(+options[i].level === 4){
+        inputFormLabel[i].style.paddingLeft = '45px'
+    }
+    else if(+options[i].level === 5){
+        inputFormLabel[i].style.paddingLeft = '60px'
+    }else if(+options[i].level === 6){
+        inputFormLabel[i].style.paddingLeft = '75px'
+    }
     Form.append(inputWrapper[i])
 }
+zalupa = []
+for(let i = 0; i<inputWrapper.length;i++){
+    zalupa[i] = {
+        id:options[i].level,
+        item: inputWrapper[i],
+        parent: options[i].level-1,
+        children: []
+        
+    }
+}
+let obj_nested_list = []
+    // debugger;
+function fill_with_children(children_arr, parent_id) {
+    // find all objs with parent "parent"
+    for ( i = 0; i < zalupa.length; i++) {
+        obj = zalupa[i];
+        if (obj.parent === parent_id) { 
+            children_arr.push(obj);
+            obj.children = [];
+            fill_with_children(obj.children, obj.id);
+        }
+    }
+    indx = 0;
+    for (let i = 0; i < zalupa.length; i++){
+        if(zalupa[i].id === 0){
+            indx=indx++
+        }
+        if ( zalupa[i].id > 0 ){
+            object = obj_nested_list[indx]
+            while (object != []){
+                object = object.children
+                
+            }
+            object.push(zalupa[i])
+
+        }
+    }
+    
+    
+}
+
+fill_with_children(obj_nested_list, 0);
+console.log(obj_nested_list)
+
+
+
 
 
 Form.classList.add('Form')
@@ -150,10 +212,13 @@ for (let i = 0; i < inputWrapper.length; i++) {
         }
         if(count[0] === undefined){
             mainInput1.setAttribute('placeholder',  'Код ОКРБ или наименование закупаемой продукции'  )
+            mainInput1.style.borderLeft = '1px solid #D9D9D9'
         }else{
             mainInput1.setAttribute('placeholder',  count[0].innerText )
+            mainInput1.style.borderLeft = '2px solid #035B77'
         }
         link.innerText = ('Показать выбранное(' + count.length + ')')
+        
     }) 
    
 }
