@@ -89,23 +89,23 @@ for (let i = 0; i < options.length; i++) {
     customCheckbox[i] = document.createElement('span')
     customCheckbox[i].classList.add('custom_checkbox')
     inputForm[i] = document.createElement('input')
-    inputForm[i].setAttribute('type', 'checkbox');  inputForm[i].classList.add('inputForm');
+    inputForm[i].setAttribute('type', 'checkbox'); inputForm[i].classList.add('inputForm');
     inputFormLabel[i] = document.createElement('label'); inputFormLabel[i].innerText = options[i].title; inputFormLabel[i].setAttribute('id', options[i].value); inputFormLabel[i].classList.add('inputFormLabel')
     inputWrapper[i] = document.createElement('div'); inputWrapper[i].classList.add('inputWrapper'); inputWrapper[i].append(inputForm[i], customCheckbox[i], inputFormLabel[i]);
-    if(options[i].level === 1){
+    if (options[i].level === 1) {
         inputFormLabel[i].style.paddingLeft = '0'
-    }else if(+options[i].level === 2){
+    } else if (+options[i].level === 2) {
         inputFormLabel[i].style.paddingLeft = '15px'
     }
-    else if(+options[i].level === 3){
+    else if (+options[i].level === 3) {
         inputFormLabel[i].style.paddingLeft = '30px'
     }
-    else if(+options[i].level === 4){
+    else if (+options[i].level === 4) {
         inputFormLabel[i].style.paddingLeft = '45px'
     }
-    else if(+options[i].level === 5){
+    else if (+options[i].level === 5) {
         inputFormLabel[i].style.paddingLeft = '60px'
-    }else if(+options[i].level === 6){
+    } else if (+options[i].level === 6) {
         inputFormLabel[i].style.paddingLeft = '75px'
     }
     Form.append(inputWrapper[i])
@@ -130,13 +130,13 @@ for (let i = 0; i < options.length; i++) {
 //   const last = children[children.length - 1];
 //   if (last.dataLevel == item.dataLevel) {
 //     children.push(item);
-    
-    
+
+
 //   }
 //   if (last.dataLevel < item.dataLevel) {
 //     last.children ||= [];
 //     setChildren(last.children, item);
-    
+
 //   }
 // }
 
@@ -153,7 +153,7 @@ for (let i = 0; i < options.length; i++) {
 //             list[i].title.appendChild(div);
 //             div.classList.add('inputWrapper')
 //             print_list(list[i].children, div);
-        
+
 //         }
 //         container.appendChild(list[i].title);
 //     }
@@ -187,9 +187,9 @@ link.addEventListener('click', () => {
 arrowBack.addEventListener('click', () => {
     modalWindow.style.pointerEvents = 'none'
     modalWindow.style.opacity = '0'
-    count = [];
-    link.innerText = ''
-    mainInput1.setAttribute('placeholder',  'Код ОКРБ или наименование закупаемой продукции'  )
+    mainInput1.setAttribute('placeholder', count[0].innerText)
+    link.innerText = ('Показать выбранное(' + count.length + ')')
+
 })
 
 Search.addEventListener('input', () => {
@@ -203,38 +203,49 @@ Search.addEventListener('input', () => {
 })
 
 let count = [];
-for(let i = 0; i< inputWrapper.length;i++){
+for (let i = 0; i < inputWrapper.length; i++) {
     inputWrapper[i].addEventListener('click', () => {
         if (inputForm[i].checked) {
             inputWrapper[i].classList.remove('checked')
-            count = count.filter(item=> {
+            count = count.filter(item => {
                 return item !== inputFormLabel[i]
             })
-            
+
         } else {
             inputWrapper[i].classList.add('checked')
             count.push(inputFormLabel[i])
         }
         inputForm[i].checked = !inputForm[i].checked
-        if(count[0] === undefined){
-            mainInput1.setAttribute('placeholder',  'Код ОКРБ или наименование закупаемой продукции'  )
+        if (count[0] === undefined) {
+            mainInput1.setAttribute('placeholder', 'Код ОКРБ или наименование закупаемой продукции')
             mainInput1.style.borderLeft = '1px solid #D9D9D9'
-        }else{
-            mainInput1.setAttribute('placeholder',  count[0].innerText )
+        } else {
+            mainInput1.setAttribute('placeholder', count[0].innerText)
             mainInput1.style.borderLeft = '2px solid #035B77'
         }
-        if (count.length > 0 ){
+        if (count.length > 0) {
             link.innerText = ('Показать выбранное(' + count.length + ')')
-        }else{
+        } else {
             link.innerText = ''
         }
-    }) 
-   
+    })
+
 }
 
 btn.addEventListener('click', () => {
     modalWindow.style.pointerEvents = 'none'
     modalWindow.style.opacity = '0'
+    let result = []
+    if(count.length > 0 ){
+        for (let i = 0; i <count.length; i++ ){
+            result.push(count[i].innerText)
+        }
+        alert('Выбрано: ' + result.join(', '))
+    }else{
+        alert('ничего не выбрано')
+    }
+    
+
 })
 
 clearBtn.addEventListener('click', () => {
@@ -246,7 +257,7 @@ clearBtn.addEventListener('click', () => {
     })
     count = [];
     link.innerText = ''
-    mainInput1.setAttribute('placeholder',  'Код ОКРБ или наименование закупаемой продукции'  )
+    mainInput1.setAttribute('placeholder', 'Код ОКРБ или наименование закупаемой продукции')
 })
 
 // main window
@@ -256,25 +267,25 @@ header2.classList.add('container_header')
 header1.classList.add('container_header')
 mainInput1.classList.add('main_input')
 mainInput2.classList.add('main_input')
-mainInput1.addEventListener('click',()=>{
-    if (modalWindow.style.opacity == '1'){
+mainInput1.addEventListener('click', () => {
+    if (modalWindow.style.opacity == '1') {
         modalWindow.style.pointerEvents = 'none'
         modalWindow.style.opacity = '0'
-    }else{
+    } else {
         modalWindow.style.pointerEvents = 'auto'
         modalWindow.style.opacity = '1'
     }
-    
+
 })
 mainInput1.readOnly = true
 mainInput2.readOnly = true
-mainInput1.setAttribute('placeholder',  'Код ОКРБ или наименование закупаемой продукции'  )
+mainInput1.setAttribute('placeholder', 'Код ОКРБ или наименование закупаемой продукции')
 
 link.classList.add('link')
 
 item1.classList.add('item')
 item2.classList.add('item')
-item1.append(header1, link , mainInput1)
+item1.append(header1, link, mainInput1)
 item2.append(header2, mainInput2)
 
 container.classList.add('container')
